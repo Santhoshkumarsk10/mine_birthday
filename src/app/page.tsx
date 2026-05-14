@@ -7,6 +7,7 @@ import Quiz from "@/components/Quiz";
 import Gallery from "@/components/Gallery";
 import Message from "@/components/Message";
 import FinalSurprise from "@/components/FinalSurprise";
+import Footer from "@/components/Footer";
 
 type Step = "welcome" | "quiz" | "gallery" | "message" | "surprise";
 
@@ -19,7 +20,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen flex flex-col">
       <AnimatePresence mode="wait">
         {step === "welcome" && (
           <motion.div
@@ -81,6 +82,9 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* Footer integrated into the page flow */}
+      <Footer />
     </div>
   );
 }
