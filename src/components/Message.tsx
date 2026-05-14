@@ -47,12 +47,12 @@ export default function Message({ onComplete }: MessageProps) {
           A Message for You
         </h2>
 
-        <div className="text-xl md:text-2xl text-white/80 leading-relaxed text-center min-h-[200px] font-serif italic">
+        <div className="text-2xl md:text-4xl text-rose-100 leading-relaxed text-center min-h-[250px] font-romantic">
           {displayedText}
           <motion.span
             animate={{ opacity: [1, 0] }}
             transition={{ duration: 0.8, repeat: Infinity }}
-            className="inline-block w-1 h-8 bg-primary ml-1 translate-y-1"
+            className="inline-block w-1 h-10 bg-accent ml-1 translate-y-2"
           />
         </div>
 
@@ -64,9 +64,9 @@ export default function Message({ onComplete }: MessageProps) {
         >
           <button
             onClick={onComplete}
-            className="glass px-10 py-4 rounded-full text-white font-semibold hover:bg-white/10 transition-colors"
+            className="glass px-12 py-4 rounded-full text-white font-semibold text-xl hover:bg-white/10 transition-all font-elegant italic border-accent/30"
           >
-            The Final Surprise
+            See Our Surprise
           </button>
         </motion.div>
 
