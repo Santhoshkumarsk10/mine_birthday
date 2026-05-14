@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎂 Premium Birthday Surprise Website
 
-## Getting Started
+A beautiful, emotional, and interactive birthday surprise website built with Next.js, Framer Motion, and Tailwind CSS. Designed to create a magical journey for someone special.
 
-First, run the development server:
+## ✨ Features
 
+- **Cinematic Experience**: A smooth, guided journey from a magical welcome screen to a grand finale.
+- **Interactive Quiz**: Engagement through personalized questions about shared memories.
+- **Dynamic Gallery**: A "All About You" gallery featuring 19 cherished moments with custom captions.
+- **Emotional Message**: A heartfelt birthday letter with a typing effect for an intimate feel.
+- **Grand Reveal**: Final surprise with a celebratory video, music, and synchronized confetti bursts.
+- **Rich Visuals**: Rose-gold dark theme, floating animations, and magical particle backgrounds (hearts & stars).
+- **Fully Responsive**: Optimized for all devices (Mobile, Tablet, and Desktop).
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Particles**: [tsParticles](https://particles.js.org/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Confetti**: [canvas-confetti](https://www.npmjs.com/package/canvas-confetti)
+- **Fonts**: [Google Fonts](https://fonts.google.com/) (Outfit, Playfair Display, Dancing Script)
+
+## 🛠️ Getting Started
+
+### 1. Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Development
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the project.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Customization
+Update `src/config/site.ts` to personalize the experience:
+- Change the `friendName` and `birthDate`.
+- Update `questions` with your own memories.
+- Add your own images to `public/images` and update the `gallery` array.
+- Write your own heartfelt `personalMessage`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌍 Deployment
 
-## Learn More
+This project is optimized for **Cloudflare Pages** (Static HTML Export).
 
-To learn more about Next.js, take a look at the following resources:
+### Build
+```bash
+npm run build
+```
+The static files will be generated in the `out` directory.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Quick Deploy to Cloudflare
+1. Connect your GitHub repo to Cloudflare Pages.
+2. Select **Framework preset**: `Next.js (Static HTML export)`.
+3. Set **Build command**: `npm run build`.
+4. Set **Build output directory**: `out`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ❤️ Credits
+Developed by **Santhoshkumar B**  
+Made with love for Shanmu.

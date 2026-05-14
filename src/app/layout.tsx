@@ -3,6 +3,7 @@ import { Outfit, Playfair_Display, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Background from "@/components/Background";
 import MusicPlayer from "@/components/MusicPlayer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { siteConfig } from "@/config/site";
 
 const outfit = Outfit({
@@ -32,12 +33,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark h-full antialiased">
-      <body className={`${outfit.className} ${playfair.variable} ${dancingScript.variable} min-h-full flex flex-col relative`}>
+      <body className={`${outfit.className} ${playfair.variable} ${dancingScript.variable} min-h-full flex flex-col relative overflow-x-hidden`}>
         <Background />
         <MusicPlayer />
-        <main className="flex-1 relative z-10">
+        <main className="flex-1 relative z-10 flex flex-col">
           {children}
         </main>
+        {/* <WhatsAppButton /> */}
       </body>
     </html>
   );

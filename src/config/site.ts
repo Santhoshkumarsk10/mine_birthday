@@ -53,4 +53,5 @@ export const siteConfig = {
   ],
   personalMessage: `To my dearest love, on your special day. Every moment spent with you is a gift I cherish more than words can say. You've brought so much light, laughter, and love into my life over the past years. As you celebrate another trip around the sun, I want you to know that you are my sun, my moon, and all my stars. Here's to a lifetime of more birthdays, more adventures, and more love. Happy Birthday, my everything! ❤️`,
   surpriseVideoId: "dQw4w9WgXcQ",
+  whatsappNumber: "919677909533",
 };
