@@ -63,7 +63,7 @@ export default function Welcome({ onStart }: WelcomeProps) {
         </motion.div>
         
         <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-300 to-pink-500 text-glow-romantic font-elegant leading-tight">
-          {siteConfig.welcomeMessage}
+          {siteConfig.welcomeMessage} <span className="text-accent animate-pulse inline-block ml-2 text-red-300 font-elegant">{siteConfig.friendName}</span>
         </h1>
         
         <motion.p

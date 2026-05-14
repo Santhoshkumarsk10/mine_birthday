@@ -30,10 +30,10 @@ export default function Gallery({ onComplete }: GalleryProps) {
         className="text-center mb-20"
       >
         <h2 className="text-6xl md:text-9xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-500 to-rose-700 font-elegant leading-tight">
-          A Year of Us
+          All About You
         </h2>
         <p className="text-white/60 text-2xl md:text-3xl font-romantic italic max-w-2xl mx-auto">
-          Every moment with you is a memory I treasure. Here are some of my favorites from this year.
+          A collection of your most radiant smiles and beautiful memories. You make the world brighter just by being in it.
         </p>
       </motion.div>
 
@@ -70,7 +70,7 @@ export default function Gallery({ onComplete }: GalleryProps) {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="mt-24 text-center"
+        className="mt-24 flex flex-col items-center gap-8"
       >
         <button
           onClick={onComplete}
