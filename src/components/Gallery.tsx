@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import { useState } from "react";
-import { Maximize2, X } from "lucide-react";
+import { Maximize2, X, Star } from "lucide-react";
 
 interface GalleryProps {
   onComplete: () => void;
@@ -14,42 +14,52 @@ export default function Gallery({ onComplete }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen py-24 px-4 max-w-7xl mx-auto">
+    <div className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative overflow-hidden">
+      {/* Decorative stars */}
+      <div className="absolute top-20 left-10 text-accent/10 animate-pulse">
+        <Star size={40} fill="currentColor" />
+      </div>
+      <div className="absolute bottom-20 right-10 text-accent/10 animate-pulse delay-700">
+        <Star size={60} fill="currentColor" />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="text-center mb-20"
       >
-        <h2 className="text-5xl md:text-8xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-rose-600 font-elegant">
-          Our Love Story
+        <h2 className="text-6xl md:text-9xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-500 to-rose-700 font-elegant leading-tight">
+          A Year of Us
         </h2>
-        <p className="text-white/60 text-xl font-romantic italic">A journey through our most beautiful moments.</p>
+        <p className="text-white/60 text-2xl md:text-3xl font-romantic italic max-w-2xl mx-auto">
+          Every moment with you is a memory I treasure. Here are some of my favorites from this year.
+        </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {siteConfig.gallery.map((item, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className="group relative aspect-square rounded-3xl overflow-hidden glass cursor-pointer"
+            className="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden glass cursor-pointer border border-white/5 shadow-romantic-lg"
             onClick={() => setSelectedImage(item.url)}
           >
             <Image
               src={item.url}
               alt={item.caption}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-              <p className="text-white font-romantic text-3xl mb-2 translate-y-4 group-hover:translate-y-0 transition-transform">
+            <div className="absolute inset-0 bg-gradient-to-t from-red-950/90 via-red-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+              <p className="text-white font-romantic text-4xl mb-3 translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
                 {item.caption}
               </p>
-              <div className="text-white/60 flex items-center gap-2 text-sm translate-y-4 group-hover:translate-y-0 transition-transform delay-75">
-                <Maximize2 size={16} /> Click to enlarge
+              <div className="text-white/70 flex items-center gap-2 text-base translate-y-6 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                <Maximize2 size={18} /> Click to relive this moment
               </div>
             </div>
           </motion.div>
@@ -60,42 +70,46 @@ export default function Gallery({ onComplete }: GalleryProps) {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="mt-20 text-center"
+        className="mt-24 text-center"
       >
         <button
           onClick={onComplete}
-          className="glass px-12 py-4 rounded-full text-white font-semibold text-xl hover:bg-white/10 transition-all font-elegant italic border-primary/30"
+          className="glass px-14 py-5 rounded-full text-white font-bold text-2xl hover:bg-white/10 hover:scale-105 active:scale-95 transition-all font-elegant italic border border-accent/40 shadow-romantic-xl"
         >
-          Read Our Message
+          Read Your Birthday Message
         </button>
       </motion.div>
 
       {/* Lightbox */}
-      {selectedImage && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-10"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button className="absolute top-10 right-10 text-white/60 hover:text-white">
-            <X size={32} />
-          </button>
+      <AnimatePresence>
+        {selectedImage && (
           <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="relative w-full h-full max-w-5xl"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/98 flex items-center justify-center p-4 md:p-12 backdrop-blur-sm"
+            onClick={() => setSelectedImage(null)}
           >
-            <Image
-              src={selectedImage}
-              alt="Memory"
-              fill
-              className="object-contain"
-            />
+            <button className="absolute top-12 right-12 text-white/50 hover:text-white transition-colors">
+              <X size={48} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full h-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={selectedImage}
+                alt="Memory"
+                fill
+                className="object-contain"
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 }

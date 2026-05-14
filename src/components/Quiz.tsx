@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/config/site";
-import { CheckCircle2, AlertCircle, ChevronRight } from "lucide-react";
+import { CheckCircle2, AlertCircle, ChevronRight, Gift } from "lucide-react";
 import { cn } from "@/lib/utils";
 import confetti from "canvas-confetti";
 
@@ -27,9 +27,10 @@ export default function Quiz({ onComplete }: QuizProps) {
       setMessage("Yay! That's correct! ✨");
       
       confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#ff4d4d', '#ff9999', '#ffcc00', '#33ccff', '#ff66cc']
       });
 
       setTimeout(() => {
@@ -51,31 +52,39 @@ export default function Quiz({ onComplete }: QuizProps) {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-20 relative">
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-md px-10">
-        <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+        <div className="flex items-center gap-2 mb-2 justify-center">
+          <Gift size={20} className="text-accent" />
+          <span className="text-accent font-semibold tracking-wider uppercase text-xs">Birthday Progress</span>
+        </div>
+        <div className="h-2 bg-white/10 rounded-full overflow-hidden shadow-inner">
           <motion.div
-            className="h-full bg-accent"
+            className="h-full bg-gradient-to-r from-accent to-pink-500"
             initial={{ width: 0 }}
             animate={{ width: `${((currentStep + 1) / siteConfig.questions.length) * 100}%` }}
+            transition={{ type: "spring", stiffness: 50 }}
           />
         </div>
-        <div className="mt-2 text-center text-white/40 text-sm">
-          Question {currentStep + 1} of {siteConfig.questions.length}
+        <div className="mt-2 text-center text-white/40 text-sm font-medium">
+          Memory {currentStep + 1} of {siteConfig.questions.length}
         </div>
       </div>
 
       <AnimatePresence mode="wait">
         <motion.div
           key={currentStep}
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          className="glass max-w-2xl w-full p-8 md:p-12 rounded-[2rem] border-primary/20"
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: -20 }}
+          className="glass max-w-2xl w-full p-8 md:p-12 rounded-[2.5rem] border-primary/20 shadow-romantic-2xl relative overflow-hidden"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-rose-200 to-white font-elegant">
+          {/* Decorative background element */}
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/10 blur-3xl rounded-full" />
+          
+          <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center bg-clip-text text-transparent bg-gradient-to-r from-rose-200 via-white to-rose-100 font-elegant leading-tight">
             {currentQuestion.question}
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
             <div className="relative">
               <input
                 type="text"
@@ -86,38 +95,38 @@ export default function Quiz({ onComplete }: QuizProps) {
                 }}
                 placeholder="Type your answer here..."
                 className={cn(
-                  "w-full bg-white/5 border rounded-2xl px-6 py-4 text-xl outline-none transition-all font-elegant",
-                  status === "correct" ? "border-green-500/50 bg-green-500/10" : 
-                  status === "wrong" ? "border-red-500/50 bg-red-500/10" : "border-white/10 focus:border-accent/50"
+                  "w-full bg-white/5 border rounded-2xl px-8 py-5 text-2xl outline-none transition-all font-elegant text-center shadow-inner",
+                  status === "correct" ? "border-green-500/50 bg-green-500/10 text-green-400" : 
+                  status === "wrong" ? "border-red-500/50 bg-red-500/10 text-red-400" : "border-white/10 focus:border-accent/50 text-white"
                 )}
                 autoFocus
               />
               <AnimatePresence>
                 {status !== "idle" && (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2"
+                    initial={{ opacity: 0, scale: 0.8, rotate: -45 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    className="absolute right-6 top-1/2 -translate-y-1/2"
                   >
                     {status === "correct" ? (
-                      <CheckCircle2 className="text-green-500" size={28} />
+                      <CheckCircle2 className="text-green-500 shadow-glow-green" size={32} />
                     ) : (
-                      <AlertCircle className="text-red-500" size={28} />
+                      <AlertCircle className="text-red-500 shadow-glow-red" size={32} />
                     )}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            <div className="h-6 text-center">
+            <div className="h-8 text-center">
               <AnimatePresence>
                 {message && (
                   <motion.p
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={cn(
-                      "text-lg",
-                      status === "correct" ? "text-green-400" : "text-red-400"
+                      "text-xl font-romantic italic",
+                      status === "correct" ? "text-green-400" : "text-rose-300"
                     )}
                   >
                     {message}
@@ -129,9 +138,9 @@ export default function Quiz({ onComplete }: QuizProps) {
             <button
               type="submit"
               disabled={!answer || status === "correct"}
-              className="w-full py-4 rounded-2xl bg-accent text-white font-semibold text-xl flex items-center justify-center gap-2 hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-elegant italic"
+              className="w-full py-5 rounded-2xl bg-gradient-to-r from-accent to-rose-600 text-white font-bold text-2xl flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all font-elegant shadow-romantic-lg"
             >
-              Continue Our Story <ChevronRight size={20} />
+              Unwrap the Next Memory <ChevronRight size={24} />
             </button>
           </form>
         </motion.div>

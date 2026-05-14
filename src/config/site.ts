@@ -1,53 +1,53 @@
 export const siteConfig = {
   friendName: "My Love",
   birthDate: "2026-05-23",
-  welcomeMessage: "To My Forever & Always ❤️",
+  welcomeMessage: "Happy Birthday to My Forever & Always! 🎂",
   musicUrl: "/audio/bgm.mp3",
   questions: [
     {
-      question: "When we meet?",
-      answer: "24 December 2017",
-      retryMessage: "Think back to where it all began... 🌳"
+      question: "Which day did the world become 100% brighter?",
+      answer: "23 May",
+      retryMessage: "Think of your own special day! 🎈"
     },
     {
-      question: "What is my favorite flower?",
-      answer: "Jasmine",
-      retryMessage: "Its white and small 🌹"
+      question: "What is the most beautiful thing I've ever seen? (Hint: Mirror)",
+      answer: "You",
+      retryMessage: "Look in the mirror and you'll find the answer! 💖"
     },
     {
       question: "What was the first movie we watched together?",
       answer: "Sandakozhi2",
-      retryMessage: "Vishal and Keerthi suresh"
+      retryMessage: "Remember that night? Vishal and Keerthi Suresh... 🎬"
     },
     {
-      question: "Where was our first vacation?",
+      question: "Where was the first place we said 'I Love You'?",
       answer: "Vietnam",
-      retryMessage: "Land of Love!"
+      retryMessage: "The land of love and beautiful memories! 🌏"
     },
     {
-      question: "How many days have we been together? (Hint: ",
-      answer: "365",
-      retryMessage: "Every second with you counts! ⏳"
+      question: "How many more years do I want to spend with you?",
+      answer: "Forever",
+      retryMessage: "A lifetime isn't enough! ♾️"
     }
   ],
   gallery: [
     {
       url: "https://images.unsplash.com/photo-1518199266791-7399494a6bf2?q=80&w=2070&auto=format&fit=crop",
-      caption: "Our favorite place. ❤️"
+      caption: "Another year of us. ❤️"
     },
     {
       url: "https://images.unsplash.com/photo-1516589174184-c6848b11674c?q=80&w=2070&auto=format&fit=crop",
-      caption: "A night to remember. ✨"
+      caption: "My favorite birthday girl. ✨"
     },
     {
       url: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=2070&auto=format&fit=crop",
-      caption: "Pure happiness. 😊"
+      caption: "Pure birthday bliss. 😊"
     },
     {
       url: "https://images.unsplash.com/photo-1522673607200-1648832cee98?q=80&w=2070&auto=format&fit=crop",
-      caption: "Hand in hand, forever. 🤝"
+      caption: "Growing old together. 🤝"
     }
   ],
-  personalMessage: `Every moment I spend with you is like a beautiful dream come true. You are my sunshine on a cloudy day and the anchor that keeps me grounded. I love you more than words can ever express. Thank you for being my everything. ❤️`,
+  personalMessage: `To my dearest love, on your special day. Every moment spent with you is a gift I cherish more than words can say. You've brought so much light, laughter, and love into my life over the past years. As you celebrate another trip around the sun, I want you to know that you are my sun, my moon, and all my stars. Here's to a lifetime of more birthdays, more adventures, and more love. Happy Birthday, my everything! ❤️`,
   surpriseVideoId: "dQw4w9WgXcQ",
 };
