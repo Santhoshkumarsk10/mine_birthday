@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Playfair_Display, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Background from "@/components/Background";
 import MusicPlayer from "@/components/MusicPlayer";
@@ -7,12 +7,22 @@ import { siteConfig } from "@/config/site";
 
 const outfit = Outfit({
   subsets: ["latin"],
-  display: "swap",
+  variable: "--font-outfit",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing",
 });
 
 export const metadata: Metadata = {
-  title: `Happy Birthday ${siteConfig.friendName}! 🎉`,
-  description: "A special birthday surprise made with love.",
+  title: `For ${siteConfig.friendName} ❤️`,
+  description: "A special romantic surprise made with love.",
 };
 
 export default function RootLayout({
@@ -22,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark h-full antialiased">
-      <body className={`${outfit.className} min-h-full flex flex-col relative`}>
+      <body className={`${outfit.className} ${playfair.variable} ${dancingScript.variable} min-h-full flex flex-col relative`}>
         <Background />
         <MusicPlayer />
         <main className="flex-1 relative z-10">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import { loadHeartShape } from "@tsparticles/shape-heart";
 import type { Container, Engine } from "@tsparticles/engine";
 
 export default function Background() {
@@ -11,6 +12,7 @@ export default function Background() {
   useEffect(() => {
     initParticlesEngine(async (engine: Engine) => {
       await loadSlim(engine);
+      await loadHeartShape(engine);
     }).then(() => {
       setInit(true);
     });
@@ -47,32 +49,32 @@ export default function Background() {
         },
         particles: {
           color: {
-            value: "#8b5cf6",
+            value: ["#ff4d4d", "#e2b1b1", "#ff9999"],
           },
           move: {
-            direction: "none",
+            direction: "top",
             enable: true,
             outModes: {
               default: "out",
             },
             random: true,
-            speed: 1,
+            speed: 0.5,
             straight: false,
           },
           number: {
             density: {
               enable: true,
             },
-            value: 100,
+            value: 60,
           },
           opacity: {
-            value: { min: 0.1, max: 0.5 },
+            value: { min: 0.1, max: 0.4 },
           },
           shape: {
-            type: "circle",
+            type: "heart",
           },
           size: {
-            value: { min: 1, max: 3 },
+            value: { min: 2, max: 5 },
           },
         },
         detectRetina: true,

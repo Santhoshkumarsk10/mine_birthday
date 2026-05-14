@@ -1,43 +1,53 @@
 export const siteConfig = {
-  friendName: "Santhosh",
-  birthDate: "2026-05-14", // Today's date for demo
-  welcomeMessage: "Happy Birthday [Friend Name]! 🎉",
-  musicUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", // Placeholder music
+  friendName: "My Love",
+  birthDate: "2026-05-23",
+  welcomeMessage: "To My Forever & Always ❤️",
+  musicUrl: "/audio/bgm.mp3",
   questions: [
     {
-      question: "What is your favorite color?",
-      answer: "Black",
-      retryMessage: "Incorrect! Hint: It's the color of the night. 🖤"
+      question: "When we meet?",
+      answer: "24 December 2017",
+      retryMessage: "Think back to where it all began... 🌳"
     },
     {
-      question: "When is your birthday?",
-      answer: "May 14",
-      retryMessage: "Wrong! Check your calendar! 🎂"
+      question: "What is my favorite flower?",
+      answer: "Jasmine",
+      retryMessage: "Its white and small 🌹"
     },
     {
-      question: "What's our favorite snack?",
-      answer: "Pizza",
-      retryMessage: "Nope! Think cheesier! 🍕"
+      question: "What was the first movie we watched together?",
+      answer: "Sandakozhi2",
+      retryMessage: "Vishal and Keerthi suresh"
+    },
+    {
+      question: "Where was our first vacation?",
+      answer: "Vietnam",
+      retryMessage: "Land of Love!"
+    },
+    {
+      question: "How many days have we been together? (Hint: ",
+      answer: "365",
+      retryMessage: "Every second with you counts! ⏳"
     }
   ],
   gallery: [
     {
-      url: "https://images.unsplash.com/photo-1530103043960-ef38714abb15?q=80&w=2069&auto=format&fit=crop",
-      caption: "The first time we met! ✨"
+      url: "https://images.unsplash.com/photo-1518199266791-7399494a6bf2?q=80&w=2070&auto=format&fit=crop",
+      caption: "Our favorite place. ❤️"
     },
     {
-      url: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2070&auto=format&fit=crop",
-      caption: "Always celebrating! 🎈"
+      url: "https://images.unsplash.com/photo-1516589174184-c6848b11674c?q=80&w=2070&auto=format&fit=crop",
+      caption: "A night to remember. ✨"
     },
     {
-      url: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=2072&auto=format&fit=crop",
-      caption: "Sweet memories. 🍰"
+      url: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=2070&auto=format&fit=crop",
+      caption: "Pure happiness. 😊"
     },
     {
-      url: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop",
-      caption: "Good times! 🌟"
+      url: "https://images.unsplash.com/photo-1522673607200-1648832cee98?q=80&w=2070&auto=format&fit=crop",
+      caption: "Hand in hand, forever. 🤝"
     }
   ],
-  personalMessage: `Happy Birthday! I hope your day is as wonderful and amazing as you are. Thank you for being such a great friend and for all the memories we've shared. May this year bring you endless joy and success! ❤️`,
-  surpriseVideoId: "dQw4w9WgXcQ", // Rickroll for fun, or any youtube ID
+  personalMessage: `Every moment I spend with you is like a beautiful dream come true. You are my sunshine on a cloudy day and the anchor that keeps me grounded. I love you more than words can ever express. Thank you for being my everything. ❤️`,
+  surpriseVideoId: "dQw4w9WgXcQ",
 };

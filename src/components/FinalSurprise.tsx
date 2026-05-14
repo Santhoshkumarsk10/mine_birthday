@@ -16,7 +16,7 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
   useEffect(() => {
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, colors: ['#ff4d4d', '#ff9999', '#e2b1b1'] };
 
     const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
@@ -36,7 +36,8 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
     confetti({
       particleCount: 150,
       spread: 70,
-      origin: { y: 0.6 }
+      origin: { y: 0.6 },
+      colors: ['#ff4d4d', '#ff9999', '#e2b1b1']
     });
 
     setTimeout(() => setShowVideo(true), 1000);
@@ -52,8 +53,8 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
         transition={{ type: "spring", duration: 1 }}
         className="text-center mb-12"
       >
-        <h2 className="text-5xl md:text-7xl font-bold mb-4 text-glow bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500">
-          Best Wishes Forever! ❤️
+        <h2 className="text-5xl md:text-8xl font-bold mb-4 text-glow-romantic bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-rose-400 to-pink-600 font-elegant leading-tight">
+          Forever Yours ❤️
         </h2>
         <p className="text-2xl text-white/60">May your day be filled with magic.</p>
       </motion.div>

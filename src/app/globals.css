@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(0.627 0.265 303.9);
-  --color-primary-foreground: oklch(0.985 0.001 106.4);
-  --color-background: oklch(0.129 0 0);
-  --color-foreground: oklch(0.985 0.001 106.4);
-  --color-border: oklch(0.278 0.033 256.8);
+  --color-primary: #e2b1b1; /* Rose Gold */
+  --color-primary-foreground: #ffffff;
+  --color-background: #0d0202; /* Deep Obsidian Red */
+  --color-foreground: #fff5f5;
+  --color-border: #2d0a0a;
+  --color-accent: #ff4d4d; /* Heart Red */
 }
 
 :root {
-  --background: oklch(0.129 0 0);
-  --foreground: oklch(0.985 0.001 106.4);
+  --background: #0d0202;
+  --foreground: #fff5f5;
 }
 
 body {
@@ -22,18 +23,18 @@ body {
 }
 
 .glass {
-  background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background-color: rgba(45, 10, 10, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 177, 177, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
-.text-glow {
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(139, 92, 246, 0.3);
+.text-glow-romantic {
+  text-shadow: 0 0 15px rgba(255, 77, 77, 0.4), 0 0 30px rgba(255, 77, 77, 0.2);
 }
 
-.bg-glow-gradient {
-  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+.bg-romantic-gradient {
+  background: radial-gradient(circle at center, rgba(139, 20, 20, 0.2) 0%, transparent 70%);
 }
 
 /* Custom Scrollbar */
@@ -46,12 +47,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.2);
+  background: rgba(226, 177, 177, 0.2);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.4);
+  background: rgba(226, 177, 177, 0.4);
 }
 
 .animate-float {
@@ -61,4 +62,12 @@ body {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+}
+
+.font-romantic {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-elegant {
+  font-family: 'Playfair Display', serif;
 }

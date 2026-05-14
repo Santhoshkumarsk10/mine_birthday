@@ -53,7 +53,7 @@ export default function Quiz({ onComplete }: QuizProps) {
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-md px-10">
         <div className="h-1 bg-white/10 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-primary"
+            className="h-full bg-accent"
             initial={{ width: 0 }}
             animate={{ width: `${((currentStep + 1) / siteConfig.questions.length) * 100}%` }}
           />
@@ -66,12 +66,12 @@ export default function Quiz({ onComplete }: QuizProps) {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentStep}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          className="glass max-w-2xl w-full p-8 md:p-12 rounded-3xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          className="glass max-w-2xl w-full p-8 md:p-12 rounded-[2rem] border-primary/20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-rose-200 to-white font-elegant">
             {currentQuestion.question}
           </h2>
 
@@ -86,9 +86,9 @@ export default function Quiz({ onComplete }: QuizProps) {
                 }}
                 placeholder="Type your answer here..."
                 className={cn(
-                  "w-full bg-white/5 border rounded-2xl px-6 py-4 text-xl outline-none transition-all",
+                  "w-full bg-white/5 border rounded-2xl px-6 py-4 text-xl outline-none transition-all font-elegant",
                   status === "correct" ? "border-green-500/50 bg-green-500/10" : 
-                  status === "wrong" ? "border-red-500/50 bg-red-500/10" : "border-white/10 focus:border-primary/50"
+                  status === "wrong" ? "border-red-500/50 bg-red-500/10" : "border-white/10 focus:border-accent/50"
                 )}
                 autoFocus
               />
@@ -129,9 +129,9 @@ export default function Quiz({ onComplete }: QuizProps) {
             <button
               type="submit"
               disabled={!answer || status === "correct"}
-              className="w-full py-4 rounded-2xl bg-primary text-white font-semibold text-lg flex items-center justify-center gap-2 hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full py-4 rounded-2xl bg-accent text-white font-semibold text-xl flex items-center justify-center gap-2 hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-elegant italic"
             >
-              Next Question <ChevronRight size={20} />
+              Continue Our Story <ChevronRight size={20} />
             </button>
           </form>
         </motion.div>

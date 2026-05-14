@@ -21,10 +21,10 @@ export default function Gallery({ onComplete }: GalleryProps) {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-          Our Special Moments
+        <h2 className="text-5xl md:text-8xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-rose-600 font-elegant">
+          Our Love Story
         </h2>
-        <p className="text-white/60 text-lg">A journey through time and memories.</p>
+        <p className="text-white/60 text-xl font-romantic italic">A journey through our most beautiful moments.</p>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -44,8 +44,8 @@ export default function Gallery({ onComplete }: GalleryProps) {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-              <p className="text-white font-medium text-lg mb-2 translate-y-4 group-hover:translate-y-0 transition-transform">
+            <div className="absolute inset-0 bg-gradient-to-t from-red-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+              <p className="text-white font-romantic text-3xl mb-2 translate-y-4 group-hover:translate-y-0 transition-transform">
                 {item.caption}
               </p>
               <div className="text-white/60 flex items-center gap-2 text-sm translate-y-4 group-hover:translate-y-0 transition-transform delay-75">
@@ -64,9 +64,9 @@ export default function Gallery({ onComplete }: GalleryProps) {
       >
         <button
           onClick={onComplete}
-          className="glass px-10 py-4 rounded-full text-white font-semibold hover:bg-white/10 transition-colors"
+          className="glass px-12 py-4 rounded-full text-white font-semibold text-xl hover:bg-white/10 transition-all font-elegant italic border-primary/30"
         >
-          Continue the Journey
+          Read Our Message
         </button>
       </motion.div>
 
