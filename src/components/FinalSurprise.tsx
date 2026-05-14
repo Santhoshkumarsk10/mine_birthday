@@ -107,7 +107,7 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
           <Star fill="currentColor" size={28} />
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6">
+        <div className="flex flex-col sm:flex-row gap-6 items-center">
           <button
             onClick={onReplay}
             className="glass px-10 py-4 rounded-full flex items-center justify-center gap-3 text-white/90 hover:text-white hover:bg-white/20 transition-all font-semibold text-lg border border-white/10"
@@ -133,7 +133,7 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
           }}
           transition={{ 
             duration: 10 + Math.random() * 10, 
-            repeat: Infinity,
+            repeat: Infinity, 
             delay: Math.random() * 10
           }}
         >

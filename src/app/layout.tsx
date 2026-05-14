@@ -21,7 +21,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: `For ${siteConfig.friendName} ❤️`,
+  title: `A Birthday For My ${siteConfig.friendName} ❤️`,
   description: "A special romantic surprise made with love.",
 };
 
