@@ -56,51 +56,54 @@ export default function Message({ onComplete }: MessageProps) {
       ))}
       
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        className="glass max-w-4xl w-full p-10 md:p-20 rounded-[4rem] relative overflow-hidden border border-white/10 shadow-romantic-2xl"
+        initial={{ opacity: 0, rotate: -5, scale: 0.9 }}
+        animate={{ opacity: 1, rotate: -0.5, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="paper-sheet max-w-4xl w-full relative"
       >
-        <motion.div
-          animate={{ 
-            scale: [1, 1.3, 1],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ duration: 3, repeat: Infinity }}
-          className="text-pink-500 mb-12 flex justify-center"
-        >
-          <Heart size={64} fill="currentColor" className="drop-shadow-glow" />
-        </motion.div>
+        <div className="paper-content">
+          <motion.div
+            animate={{ 
+              scale: [1, 1.1, 1],
+              rotate: [0, 5, -5, 0]
+            }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="text-rose-500 mb-8 flex justify-start"
+          >
+            <Heart size={48} fill="currentColor" className="opacity-80" />
+          </motion.div>
 
-        <h2 className="text-4xl md:text-6xl font-bold mb-12 text-center text-white font-elegant leading-tight">
-          A Birthday Letter to You
-        </h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-10 text-left ink-black font-elegant leading-tight">
+            A Birthday Letter to You
+          </h2>
 
-        <div className="text-2xl md:text-5xl text-rose-100/90 leading-relaxed text-center min-h-[300px] font-romantic italic px-4">
-          {displayedText}
-          <motion.span
-            animate={{ opacity: [1, 0] }}
-            transition={{ duration: 0.8, repeat: Infinity }}
-            className="inline-block w-1.5 h-12 bg-accent ml-2 translate-y-2 rounded-full"
-          />
+          <div className="text-2xl md:text-4xl ink-blue leading-[32px] text-left min-h-[400px] font-romantic italic">
+            {displayedText}
+            <motion.span
+              animate={{ opacity: [1, 0] }}
+              transition={{ duration: 0.8, repeat: Infinity }}
+              className="inline-block w-0.5 h-8 bg-blue-400 ml-1 translate-y-1"
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: displayedText.length === fullText.length ? 1 : 0, y: displayedText.length === fullText.length ? 0 : 20 }}
+            transition={{ duration: 0.8 }}
+            className="mt-12 flex justify-end"
+          >
+            <button
+              onClick={onComplete}
+              className="bg-white/50 border-2 border-dashed border-rose-300 px-8 py-3 rounded-lg text-rose-600 font-bold text-xl hover:bg-rose-50 hover:scale-105 active:scale-95 transition-all font-romantic italic shadow-md rotate-2"
+            >
+              See Your Grand Surprise
+            </button>
+          </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: displayedText.length === fullText.length ? 1 : 0, y: displayedText.length === fullText.length ? 0 : 20 }}
-          transition={{ duration: 0.8 }}
-          className="mt-16 flex justify-center"
-        >
-          <button
-            onClick={onComplete}
-            className="glass px-16 py-5 rounded-full text-white font-bold text-2xl hover:bg-white/20 hover:scale-105 active:scale-95 transition-all font-elegant italic border border-accent/40 shadow-romantic-xl"
-          >
-            See Your Grand Surprise
-          </button>
-        </motion.div>
-
-        {/* Decorative elements */}
-        <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/10 blur-[100px] rounded-full" />
-        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-pink-500/10 blur-[100px] rounded-full" />
+        {/* Decorative ink blots */}
+        <div className="absolute top-10 right-10 w-4 h-4 bg-blue-900/5 blur-sm rounded-full" />
+        <div className="absolute bottom-20 left-12 w-6 h-6 bg-rose-900/5 blur-md rounded-full" />
       </motion.div>
     </div>
   );

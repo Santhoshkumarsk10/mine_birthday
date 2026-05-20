@@ -71,3 +71,48 @@ body {
 .font-elegant {
   font-family: 'Playfair Display', serif;
 }
+
+.paper-sheet {
+  background-color: #fdfcf0;
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0),
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 100% 32px, 100% 32px;
+  position: relative;
+  box-shadow: 
+    2px 2px 5px rgba(0,0,0,0.1), 
+    0 10px 0 -5px #fdfcf0, 
+    0 10px 1px -4px rgba(0,0,0,0.1), 
+    0 20px 0 -10px #fdfcf0, 
+    0 20px 1px -9px rgba(0,0,0,0.1),
+    0 50px 100px -20px rgba(0,0,0,0.3);
+  transform: rotate(-0.5deg);
+  border-radius: 2px;
+}
+
+.paper-sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 60px;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba(255, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.paper-content {
+  padding: 60px 40px 60px 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.ink-blue {
+  color: #003366;
+  text-shadow: 0.5px 0.5px 1px rgba(0,51,102,0.1);
+}
+
+.ink-black {
+  color: #1c1c1c;
+  text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.1);
+}
