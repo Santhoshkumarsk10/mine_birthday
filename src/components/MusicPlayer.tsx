@@ -1,53 +1,57 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Volume2, VolumeX, Play, Pause } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { siteConfig } from "@/config/site";
 
-export default function MusicPlayer({ autoPlay = false }: { autoPlay?: boolean }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (autoPlay && audioRef.current) {
-      const playAudio = async () => {
-        try {
-          await audioRef.current?.play();
-          setIsPlaying(true);
-        } catch (err) {
-          console.log("Autoplay blocked by browser");
+    const playAudio = async () => {
+      try {
+        if (audioRef.current) {
+          await audioRef.current.play();
+          // Successfully played, remove interaction listeners
+          removeListeners();
         }
-      };
-      playAudio();
-    }
-  }, [autoPlay]);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+      } catch (err) {
+        console.log("Autoplay blocked, waiting for user interaction...");
       }
-      setIsPlaying(!isPlaying);
-    }
-  };
+    };
+
+    const handleInteraction = () => {
+      playAudio();
+    };
+
+    const addListeners = () => {
+      window.addEventListener("click", handleInteraction);
+      window.addEventListener("touchstart", handleInteraction);
+      window.addEventListener("keydown", handleInteraction);
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
+    };
+
+    // Try playing immediately
+    playAudio();
+
+    // Add listeners to start audio upon the first user interaction (e.g. clicking "Start")
+    addListeners();
+
+    return () => {
+      removeListeners();
+    };
+  }, []);
 
   return (
-    <div className="fixed top-6 right-6 z-50">
-      <button
-        onClick={togglePlay}
-        className="glass p-3 rounded-full hover:scale-110 transition-transform text-white/80 hover:text-white"
-        aria-label={isPlaying ? "Mute Music" : "Play Music"}
-      >
-        {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
-      </button>
-      <audio
-        ref={audioRef}
-        src={siteConfig.musicUrl}
-        loop
-        className="hidden"
-      />
-    </div>
+    <audio
+      ref={audioRef}
+      src={siteConfig.musicUrl}
+      loop
+      className="hidden"
+    />
   );
 }
