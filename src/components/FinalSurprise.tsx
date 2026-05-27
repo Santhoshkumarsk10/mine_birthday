@@ -1,17 +1,19 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import confetti from "canvas-confetti";
 import { useEffect, useState } from "react";
-import { RefreshCw, Heart, Star, Cake } from "lucide-react";
+import { RefreshCw, Heart, Star, Cake, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
 interface FinalSurpriseProps {
   onReplay: () => void;
 }
 
 export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
-  const [showVideo, setShowVideo] = useState(false);
+  const [showSlideshow, setShowSlideshow] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     const duration = 20 * 1000;
@@ -46,10 +48,18 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
       colors: ['#ff4d4d', '#ff9999', '#ffcc00', '#33ccff', '#ff66cc', '#ffffff']
     });
 
-    setTimeout(() => setShowVideo(true), 1500);
+    setTimeout(() => setShowSlideshow(true), 1500);
 
     return () => clearInterval(interval);
   }, []);
+
+  const handlePrev = () => {
+    setCurrentSlide((prev) => (prev - 1 + siteConfig.gallery.length) % siteConfig.gallery.length);
+  };
+
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % siteConfig.gallery.length);
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden">
@@ -80,17 +90,104 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: showVideo ? 1 : 0, y: showVideo ? 0 : 50 }}
+        animate={{ opacity: showSlideshow ? 1 : 0, y: showSlideshow ? 0 : 50 }}
         transition={{ duration: 1 }}
-        className="w-full max-w-5xl aspect-video glass rounded-[3rem] overflow-hidden shadow-romantic-2xl relative border border-white/10"
+        className="w-full max-w-5xl aspect-video glass rounded-[3rem] overflow-hidden shadow-romantic-2xl relative border border-white/10 bg-black/40"
       >
-        <iframe
-          src={`https://www.youtube.com/embed/${siteConfig.surpriseVideoId}?autoplay=1&mute=0&rel=0&modestbranding=1`}
-          title="Birthday Surprise"
-          className="w-full h-full"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        {showSlideshow && (
+          <>
+            {/* Timing Progress Bar at the top edge */}
+            <div className="absolute top-0 inset-x-0 h-1.5 bg-white/5 z-40 overflow-hidden">
+              <motion.div
+                key={currentSlide + "-" + isPlaying}
+                initial={{ width: "0%" }}
+                animate={isPlaying ? { width: "100%" } : { width: "0%" }}
+                transition={{ duration: 5, ease: "linear" }}
+                onAnimationComplete={() => {
+                  if (isPlaying) {
+                    handleNext();
+                  }
+                }}
+                className="h-full bg-gradient-to-r from-accent via-rose-500 to-pink-500"
+              />
+            </div>
+
+            {/* Top Control Bar */}
+            <div className="absolute top-6 inset-x-6 flex items-center justify-between z-30">
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="glass px-5 py-2.5 rounded-full text-white/80 hover:text-white flex items-center gap-2 text-sm font-semibold border border-white/10 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              >
+                {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                <span>{isPlaying ? "Pause" : "Play"}</span>
+              </button>
+              <div className="glass px-5 py-2.5 rounded-full text-white/80 text-sm font-semibold border border-white/10 select-none">
+                {currentSlide + 1} / {siteConfig.gallery.length}
+              </div>
+            </div>
+
+            {/* Slide Images */}
+            <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
+              <AnimatePresence mode="popLayout">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 1 }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  {/* Blurred background image for cinema look */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center blur-3xl opacity-45 scale-110 pointer-events-none"
+                    style={{ backgroundImage: `url(${siteConfig.gallery[currentSlide].url})` }}
+                  />
+                  {/* Main Centered Image */}
+                  <motion.div
+                    animate={{ scale: [1, 1.05] }}
+                    transition={{ duration: 5, ease: "linear" }}
+                    className="relative w-full h-full flex items-center justify-center bg-black/30"
+                  >
+                    <img
+                      src={siteConfig.gallery[currentSlide].url}
+                      alt={siteConfig.gallery[currentSlide].caption}
+                      className="max-w-full max-h-[90%] object-contain z-10 select-none shadow-2xl rounded-2xl"
+                    />
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Left/Right Navigation Chevrons */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full glass border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:scale-105 active:scale-95 transition-all z-30 cursor-pointer"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={32} />
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full glass border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:scale-105 active:scale-95 transition-all z-30 cursor-pointer"
+              aria-label="Next slide"
+            >
+              <ChevronRight size={32} />
+            </button>
+
+            {/* Caption Overlay */}
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-8 pt-20 z-20 flex flex-col justify-end">
+              <motion.p
+                key={currentSlide}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-white font-romantic text-2xl sm:text-3xl md:text-5xl text-center leading-relaxed font-elegant drop-shadow-md"
+              >
+                {siteConfig.gallery[currentSlide].caption}
+              </motion.p>
+            </div>
+          </>
+        )}
       </motion.div>
 
       <motion.div
@@ -110,7 +207,7 @@ export default function FinalSurprise({ onReplay }: FinalSurpriseProps) {
         <div className="flex flex-col sm:flex-row gap-6 items-center">
           <button
             onClick={onReplay}
-            className="glass px-10 py-4 rounded-full flex items-center justify-center gap-3 text-white/90 hover:text-white hover:bg-white/20 transition-all font-semibold text-lg border border-white/10"
+            className="glass px-10 py-4 rounded-full flex items-center justify-center gap-3 text-white/90 hover:text-white hover:bg-white/20 transition-all font-semibold text-lg border border-white/10 cursor-pointer"
           >
             <RefreshCw size={22} /> Replay Experience
           </button>
